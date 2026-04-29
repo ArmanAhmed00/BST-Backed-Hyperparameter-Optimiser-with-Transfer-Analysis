@@ -4,9 +4,13 @@ import zipfile
 import pandas as pd
 from io import BytesIO
 
+
+# download files and before it check if its present or not.
+# it save the files using .txt or .data
+# and it save with specific name
 def download_and_extract(url, extract_to='data', expected_file=None):
 
-    
+    #
     if not os.path.exists(extract_to):
         os.makedirs(extract_to)
     
@@ -35,10 +39,16 @@ path_a = download_and_extract(url_a, expected_file="wdbc.data")
 
 
 if path_a:
-    df_a = pd.read_csv(path_a, header=None)
+    df_a = pd.read_csv(path_a)
     print(df_a.head())
+    print(df_a.count())
 
 
 url_b = "https://archive.ics.uci.edu/static/public/267/banknote+authentication.zip"
 
-path_b = download_and_extract(url_a, expected_file=)""
+path_b = download_and_extract(url_b, expected_file="data_banknote_authentication.txt")
+
+if path_b:
+    df_b = pd.read_csv(path_b)
+    print(df_b.head())
+    print(df_b.count())
