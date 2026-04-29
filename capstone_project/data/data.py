@@ -5,15 +5,12 @@ import pandas as pd
 from io import BytesIO
 
 def download_and_extract(url, extract_to='data', expected_file=None):
-    """
-    Downloads a ZIP from a URL and extracts its contents.
-    Skips download if the expected_file already exists.
-    """
-    # Create the directory if it doesn't exist
+
+    
     if not os.path.exists(extract_to):
         os.makedirs(extract_to)
     
-    # Check if we already have the specific data file
+
     if expected_file and os.path.exists(os.path.join(extract_to, expected_file)):
         print(f"File '{expected_file}' already exists. Skipping download.")
         return os.path.join(extract_to, expected_file)
@@ -29,3 +26,19 @@ def download_and_extract(url, extract_to='data', expected_file=None):
     else:
         print(f"Failed to download. Status code: {response.status_code}")
         return None
+    
+
+url_a = "https://archive.ics.uci.edu/static/public/17/breast+cancer+wisconsin+diagnostic.zip"
+
+
+path_a = download_and_extract(url_a, expected_file="wdbc.data")
+
+
+if path_a:
+    df_a = pd.read_csv(path_a, header=None)
+    print(df_a.head())
+
+
+url_b = "https://archive.ics.uci.edu/static/public/267/banknote+authentication.zip"
+
+path_b = download_and_extract(url_a, expected_file=)""
