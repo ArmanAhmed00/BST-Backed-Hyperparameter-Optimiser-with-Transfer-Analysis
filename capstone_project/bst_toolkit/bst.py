@@ -3,21 +3,14 @@ from typing import Optional, List
 from .node import TrialNode
 
 class BST:
-    """
-    Binary Search Tree keyed by trial score.
-    Left child < parent < right child (BST property).
-    All operations are O(h) where h = tree height.
-    """
+    
 
     def __init__(self) -> None:
         self.root: Optional[TrialNode] = None
         self._size: int = 0
 
     def insert(self, score: float, params: dict) -> None:
-        """
-        Insert a new trial into the BST. 
-        If score exists, the first-inserted wins (duplicate ignored).
-        """
+        
         # Round to 6 decimals to minimize floating-point collisions
         score = round(score, 6)
         new_root = self._insert(self.root, score, params)
@@ -25,7 +18,7 @@ class BST:
             self.root = new_root
 
     def delete(self, score: float) -> None:
-        """Delete the node with the given score."""
+        
         self.root, was_deleted = self._delete(self.root, score)
         if was_deleted:
             self._size -= 1
