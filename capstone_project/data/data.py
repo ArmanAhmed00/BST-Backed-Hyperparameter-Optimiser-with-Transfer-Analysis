@@ -39,9 +39,18 @@ path_a = download_and_extract(url_a, expected_file="wdbc.data")
 
 
 if path_a:
-    df_a = pd.read_csv(path_a)
+    
+    col_names = ['id', 'diagnosis', 'radius_mean', 'texture_mean', 'perimeter_mean', 'area_mean', 
+                 'smoothness_mean', 'compactness_mean', 'concavity_mean', 'concave_points_mean',
+                 'symmetry_mean', 'fractal_dimension_mean', 'radius_se', 'texture_se', 'perimeter_se',
+                 'area_se', 'smoothness_se', 'compactness_se', 'concavity_se', 'concave_points_se',
+                 'symmetry_se', 'fractal_dimension_se', 'radius_worst', 'texture_worst', 'perimeter_worst',
+                 'area_worst', 'smoothness_worst', 'compactness_worst', 'concavity_worst', 
+                 'concave_points_worst', 'symmetry_worst', 'fractal_dimension_worst']
+    df_a = pd.read_csv(path_a, header=None, names=col_names)
     print(df_a.head())
     print(df_a.count())
+    print(df_a.info())
 
 
 url_b = "https://archive.ics.uci.edu/static/public/267/banknote+authentication.zip"
@@ -49,6 +58,11 @@ url_b = "https://archive.ics.uci.edu/static/public/267/banknote+authentication.z
 path_b = download_and_extract(url_b, expected_file="data_banknote_authentication.txt")
 
 if path_b:
-    df_b = pd.read_csv(path_b)
+    
+    col_names_b = ['variance', 'skewness', 'curtosis', 'entropy', 'class']
+    df_b = pd.read_csv(path_b, header=None, names=col_names_b)
     print(df_b.head())
+    print("==================")
     print(df_b.count())
+    print("==================")
+    print(df_b.info())
