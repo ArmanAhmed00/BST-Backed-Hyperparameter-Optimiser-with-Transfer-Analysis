@@ -150,22 +150,3 @@ class HyperparamRegistry:
             self._range(node.right, lo, hi, result)
 
 
-#Test
-if __name__ == "__main__":
-    from bst_toolkit.registry import HyperparamRegistry
-
-    reg = HyperparamRegistry()
-
-    reg.add_trial(0.90, {"model": "A"})
-    reg.add_trial(0.95, {"model": "B"})
-    reg.add_trial(0.85, {"model": "C"})
-    reg.add_trial(0.92, {"model": "D"})
-
-    print("All trials:", reg.all_trials())
-    print("Best:", reg.best())
-    print("Worst:", reg.worst())
-
-    print("Top 2:", reg.top_k(2))
-    print("Range 0.88 → 0.95:", reg.range_query(0.88, 0.95))
-
-    print("Summary:", reg.summary())
