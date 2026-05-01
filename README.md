@@ -5,3 +5,5 @@
 # Maroune Benhimoud
 # Prodipta Paul
 
+# Don't use main branch to push the code
+# use review branch
