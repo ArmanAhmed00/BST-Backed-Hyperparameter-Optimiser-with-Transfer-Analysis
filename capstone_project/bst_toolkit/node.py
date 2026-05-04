@@ -33,13 +33,3 @@ class TrialNode:
         return f"TrialNode(score={self.score:.6f}, params={self.params})"
     
 
-#Test
-if __name__ == "__main__":
-    node1 = TrialNode(0.90, {"model": "A"})
-    node2 = TrialNode(0.95, {"model": "B"})
-
-    print(node1)
-    print(node2)
-
-    print("node1 < node2:", node1 < node2)
-    print("node2 < node1:", node2 < node1)
