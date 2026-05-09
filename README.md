@@ -67,6 +67,14 @@ cd capstone_project/data
 uv run data.py
 ```
 
+Or from project root:
+
+```bash
+uv run python -m capstone_project.data.data
+```
+
+This downloads and processes datasets. Processed CSV files are saved to `capstone_project/ript`.
+
 This downloads:
 - **WDBC**: Wisconsin Diagnostic Breast Cancer (569 samples, 32 features)
 - **Banknote Authentication**: Banknote dataset (1372 samples, 5 features)
@@ -88,8 +96,8 @@ uv run python -m capstone_project.bst_toolkit.bst
 |------|-------------|
 | `bst.py` | Core BST implementation with insert, delete, search, and traversal operations |
 | `node.py` | `TrialNode` dataclass representing a single hyperparameter trial |
-| `registry.py` | Trial registry for tracking all experiments (TODO) |
-| `rebuild.py` | Utilities for rebuilding BST from saved state (TODO) |
+| `registry.py` | Trial registry for managing trials with ranking, range queries, and pruning |
+| `rebuild.py` | Rebuild utilities for transfer learning and balanced BST reconstruction |
 
 ### ML Toolkit (`ml_toolkit/`)
 
@@ -103,13 +111,14 @@ uv run python -m capstone_project.bst_toolkit.bst
 - Downloads datasets from UCI Machine Learning Repository
 - Handles automatic extraction and caching
 - Provides column names for proper data loading
+- Saves processed CSV outputs to `capstone_project/ript`
 
 ### Results Directory (`ript/`)
 
-- Output files from hyperparameter optimization runs
-- Transfer analysis reports and summaries
-- Saved model configurations and results
-- Experiment logs and performance metrics
+- Stores processed dataset CSV files
+- Stores hyperparameter optimization outputs
+- Stores transfer analysis reports and summaries
+- Stores saved model configurations and experiment logs
 
 ---
 
