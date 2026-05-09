@@ -1,6 +1,6 @@
 # BST-Backed Hyperparameter Optimiser with Transfer Analysis
 
-A hyperparameter optimisation framework using Binary Search Trees (BST) for efficient trial management and transfer learning analysis between machine learning tasks.
+A complete hyperparameter optimisation framework using Binary Search Trees (BST) for efficient trial management and transfer learning analysis between machine learning tasks. Features grid search, performance tracking, and cross-dataset transfer analysis.
 
 ## Project Team
 
@@ -23,12 +23,12 @@ BST-Backed-Hyperparameter-Optimiser-with-Transfer-Analysis/
 │   ├── bst_toolkit/                 # BST implementation
 │   │   ├── bst.py                   # Binary Search Tree class
 │   │   ├── node.py                  # TrialNode dataclass
-│   │   ├── registry.py              # Trial registry (TODO)
-│   │   ├── rebuild.py               # Tree rebuild utilities (TODO)
+│   │   ├── registry.py              # Trial registry (HyperparamRegistry)
+│   │   ├── rebuild.py               # Tree rebuild utilities
 │   │   └── __init__.py
 │   ├── ml_toolkit/                  # ML utilities
-│   │   ├── grid_search.py           # Grid search implementation (TODO)
-│   │   ├── transfer.py              # Transfer learning analysis (TODO)
+│   │   ├── grid_search.py           # Grid search implementation
+│   │   ├── transfer.py              # Transfer learning analysis
 │   │   └── __init__.py
 │   ├── data/                        # Data handling
 │   │   ├── data.py                  # Data download & loading
@@ -105,7 +105,91 @@ uv run python -m capstone_project.bst_toolkit.bst
 
 ---
 
-## 🔧 Usage
+## 🔧 Usage Examples
+
+### Basic BST Operations
+
+```python
+from capstone_project.bst_toolkit.bst import BST
+
+bst = BST()
+
+# Insert trials
+bst.insert(0.85, {"lr": 0.01, "epochs": 100})
+bst.insert(0.92, {"lr": 0.001, "epochs": 50})
+bst.insert(0.78, {"lr": 0.1, "epochs": 200})
+
+# Query operations
+best = bst.find_max()      # Highest score
+worst = bst.find_min()     # Lowest score
+print(f"Tree height: {bst.height()}")
+print(f"Is balanced: {bst.is_balanced()}")
+```
+
+### Hyperparameter Registry
+
+```python
+from capstone_project.bst_toolkit.registry import HyperparamRegistry
+
+registry = HyperparamRegistry()
+
+# Add trials
+registry.add_trial(0.85, {"lr": 0.01, "epochs": 100})
+registry.add_trial(0.92, {"lr": 0.001, "epochs": 50})
+
+# Get top performers
+top_3 = registry.top_k(3)
+summary = registry.summary()
+print(f"Best score: {summary['best_score']}")
+```
+
+### Grid Search
+
+```python
+from capstone_project.ml_toolkit.grid_search import grid_search
+
+def evaluate_model(params, dataset):
+    # Your model training and evaluation logic
+    return accuracy_score  # 0.0 to 1.0
+
+param_grid = {
+    "lr": [0.001, 0.01, 0.1],
+    "epochs": [50, 100, 200]
+}
+
+registry = grid_search(param_grid, evaluate_model, dataset)
+best_trial = registry.best()
+```
+
+### Transfer Analysis
+
+```python
+from capstone_project.ml_toolkit.transfer import analyse_transfer, transfer_summary
+
+# Compare performance across datasets
+report = analyse_transfer(registry_dataset_a, registry_dataset_b)
+summary = transfer_summary(report)
+
+print(f"Mean drift: {summary['mean_drift']}")
+print(f"Good transfers: {summary['good']}/{summary['total']}")
+```
+
+---
+
+## 📊 Current Features
+
+| Module | Status | Description |
+|--------|--------|-------------|
+| `bst.py` | ✅ Complete | Core BST with insert, delete, search, traversals |
+| `node.py` | ✅ Complete | TrialNode dataclass with comparison methods |
+| `registry.py` | ✅ Complete | HyperparamRegistry with range queries, top-k, pruning |
+| `rebuild.py` | ✅ Complete | Tree rebuild utilities for transfer learning |
+| `grid_search.py` | ✅ Complete | Exhaustive grid search with progress tracking |
+| `transfer.py` | ✅ Complete | Transfer learning analysis between datasets |
+| `data.py` | ✅ Complete | Dataset download and loading utilities |
+| `timer.py` | ✅ Complete | Performance timing decorators |
+
+---
 
 ### Importing the BST
 
@@ -193,13 +277,14 @@ print(f"Total trials: {len(bst)}")
 
 ## 📋 TODO List
 
-- [ ] Implement `registry.py` - Trial registry for tracking experiments
-- [ ] Implement `rebuild.py` - Rebuild BST from saved state
-- [ ] Implement `grid_search.py` - Grid search hyperparameter tuning
-- [ ] Implement `transfer.py` - Transfer learning analysis
+- [x] Implement `registry.py` - Trial registry (HyperparamRegistry)
+- [x] Implement `rebuild.py` - Tree rebuild utilities
+- [x] Implement `grid_search.py` - Grid search hyperparameter tuning
+- [x] Implement `transfer.py` - Transfer learning analysis
 - [ ] Add unit tests
 - [ ] Add CI/CD pipeline
 - [ ] Document API
+- [ ] Add example usage scripts
 
 ---
 
@@ -208,6 +293,7 @@ print(f"Total trials: {len(bst)}")
 - **Python**: 3.12+
 - **pandas**: Data handling
 - **requests**: HTTP requests
+- **tqdm**: Progress bars
 - **numpy**: Numerical computing
 - **torch**: Machine learning (optional)
 
