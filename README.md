@@ -38,6 +38,7 @@ BST-Backed-Hyperparameter-Optimiser-with-Transfer-Analysis/
 │   ├── benchmarks/                  # Performance benchmarking
 │   │   ├── timer.py                 # Timing utilities
 │   │   └── __init__.py
+│   ├── ript/                        # Results and output files
 │   └── setup.py                     # Package setup
 └── .venv/                           # Virtual environment
 ```
@@ -94,14 +95,21 @@ uv run python -m capstone_project.bst_toolkit.bst
 
 | File | Description |
 |------|-------------|
-| `grid_search.py` | Grid search hyperparameter tuning (TODO) |
-| `transfer.py` | Transfer learning analysis between tasks (TODO) |
+| `grid_search.py` | Grid search hyperparameter tuning |
+| `transfer.py` | Transfer learning analysis between tasks |
 
 ### Data Module (`data/`)
 
 - Downloads datasets from UCI Machine Learning Repository
 - Handles automatic extraction and caching
 - Provides column names for proper data loading
+
+### Results Directory (`ript/`)
+
+- Output files from hyperparameter optimization runs
+- Transfer analysis reports and summaries
+- Saved model configurations and results
+- Experiment logs and performance metrics
 
 ---
 
