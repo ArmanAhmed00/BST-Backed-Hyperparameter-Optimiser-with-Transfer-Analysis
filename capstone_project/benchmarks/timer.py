@@ -60,3 +60,5 @@ def benchmark_report(label: str,fn: Callable,*args,repeats: int = 5,**kwargs,) -
         "std_ms":   round(std_ms, 3),
         "repeats":  repeats,
     }
+
+print("capstone_project.benchmarks.timer loaded")
