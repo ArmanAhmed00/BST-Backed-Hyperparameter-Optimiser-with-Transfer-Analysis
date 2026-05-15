@@ -20,10 +20,7 @@ class BST:
         """
         # Round to 6 decimals to minimize floating-point collisions
         score = round(score, 6)
-        new_root = self._insert(self.root, score, params)
-        if self.root is None or self._size_changed:
-            self.root = new_root
-
+        self.root = self._insert(self.root, score, params)
     def delete(self, score: float) -> None:
         """Delete the node with the given score."""
         self.root, was_deleted = self._delete(self.root, score)
@@ -79,18 +76,15 @@ class BST:
 
     # --- Private Helpers ---
 
-    def _insert(self, node: Optional[TrialNode], score: float, params: dict) -> TrialNode:
-        self._size_changed = False
+    def _insert(self, node, score, params):
         if node is None:
-            self._size += 1
-            self._size_changed = True
+            self._size += 1          # ← already here, no need for _size_changed
             return TrialNode(score=score, params=params)
-        
         if score < node.score:
             node.left = self._insert(node.left, score, params)
         elif score > node.score:
             node.right = self._insert(node.right, score, params)
-        # If score == node.score, do nothing (first-inserted wins)
+        # score == node.score: do nothing (first-inserted wins)
         return node
 
     def _delete(self, node: Optional[TrialNode], score: float) -> tuple[Optional[TrialNode], bool]:
@@ -180,4 +174,20 @@ class BST:
                 if node.right:
                     queue.append(node.right)
             levels.append(current_level)
+        return levels
+    
+    def level_order(self) -> List[List[TrialNode]]:
+    
+        from collections import deque
+        if not self.root:
+            return []
+        levels, queue = [], deque([self.root])
+        while queue:
+            level = []
+            for _ in range(len(queue)):
+                node = queue.popleft()
+                level.append(node)
+                if node.left:  queue.append(node.left)
+                if node.right: queue.append(node.right)
+            levels.append(level)
         return levels
