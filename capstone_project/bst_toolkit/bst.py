@@ -4,7 +4,7 @@ from .node import TrialNode
 
 class BST:
     """
-    Binary Search Tree keyed by trial score.
+    Binary Search Tree keyed trial score.
     Left child < parent < right child (BST property).
     All operations are O(h) where h = tree height.
     """
