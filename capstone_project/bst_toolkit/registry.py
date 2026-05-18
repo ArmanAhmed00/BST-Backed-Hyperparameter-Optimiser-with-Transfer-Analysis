@@ -9,7 +9,7 @@ Provides:
   - best() / worst() — find extremes
   - top_k()         — k highest-scoring configs
   - range_query()   — all configs within [lo, hi]
-  - prune_below()   — remove weak trials
+  - prune_below()   — remove all weak trials
   - summary()       — statistics overview
 """
 
