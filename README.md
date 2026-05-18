@@ -138,10 +138,6 @@ After setup, the system provides multiple verification checkpoints:
 
 ### BST Toolkit (`bst_toolkit/`)
 
-## 🏗️ Architecture & Design
-
-### BST Toolkit (`bst_toolkit/`)
-
 The core data structure for efficient trial storage and retrieval:
 
 | Component | File | Key Features | Complexity |
@@ -576,19 +572,6 @@ The BST data structure provides logarithmic average-case performance for core op
 **Result Consistency**: Grid search produces the same results regardless of trial insertion order (if BST is balanced).
 
 **Transfer Analysis Correctness**: Transfer metrics are computed correctly (drift calculation, ranking logic).
-
----
-
-## 📋 TODO List
-
-- [x] Implement `registry.py` - Trial registry (HyperparamRegistry)
-- [x] Implement `rebuild.py` - Tree rebuild utilities
-- [x] Implement `grid_search.py` - Grid search hyperparameter tuning
-- [x] Implement `transfer.py` - Transfer learning analysis
-- [ ] Add unit tests
-- [ ] Add CI/CD pipeline
-- [ ] Document API
-- [ ] Add example usage scripts
 
 ---
 
