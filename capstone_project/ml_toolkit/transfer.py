@@ -9,7 +9,7 @@ def analyse_transfer(registry_a: HyperparamRegistry,registry_b: HyperparamRegist
 
 
     
-    nodes_a = registry_a.all_trials()   # ascending list of TrialNode
+    nodes_a = registry_a.all_trials()   # ascending thelist of TrialNode
     nodes_b = registry_b.all_trials()
 
     n_a = len(nodes_a)
